@@ -11,9 +11,8 @@ import java.util.Random;
 public class Transaction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Transaction.class);
-
+    private Random r = new Random();
     public int random() {
-        Random r = new Random();
         int x = r.nextInt(1000) + 1;
         return x;
     }
@@ -34,7 +33,9 @@ public class Transaction {
 
         LOGGER.info("Ычет снятия: " + account.get(0).getId() + " " + account.get(0).getMoney() + "Счет зачисления: " + account.get(1).getId() + " " + account.get(1).getMoney());
         try {
-            Thread.sleep(1000);
+            int randomSleep = r.nextInt(2);
+            int x = randomSleep == 1? 1000: 2000;
+            Thread.sleep(x);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
